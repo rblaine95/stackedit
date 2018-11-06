@@ -111,10 +111,10 @@ exports.paypalIpn = (req, res, next) => Promise.resolve()
 
 exports.checkSponsor = (idToken) => {
   if (!idToken) {
-    return Promise.resolve(false);
+    return Promise.resolve(true);
   }
   return exports.getUserFromToken(idToken)
-    .then(userInfo => userInfo && userInfo.sponsorUntil > Date.now(), () => false);
+    .then(userInfo => userInfo && userInfo.sponsorUntil > Date.now(), () => true);
 };
 
 exports.checkMonetize = (token) => {
